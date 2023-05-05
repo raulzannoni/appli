@@ -9,6 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Récapitulatif des produits</title>
 </head>
 <body>
@@ -51,7 +53,7 @@
                     //la fonction PHP number_format() permet de modifier l'affichage d'une valeur numerique en precisant plusiers paramètres
                     //number_format(variable à modifier, nombre de decimales souhaité, caractere separateur decimal, caractere separateur de milliers)
                     echo    "<tr>",
-                                "<td>".$index."</td>",
+                                "<td>".$index + 1 ."</td>",
                                 "<td>".$product['name']."</td>",
                                 "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                                 "<td>".$product['qtt']."</td>",
@@ -72,5 +74,44 @@
                     "</table>";
         }
     ?>
+
+    <!-- Bouton pour changer la page -->
+    <button id="btnIndex">Ajouter un produit</button>
+
+    <!-- Bouton pour supprimer tous les produits -->
+    <button id="btnRemoveAll">Supprimer tous les produits</button>
+
+    <!-- Bouton pour afficher et supprimer un produit -->
+    <select id="slcRemoveProduct">
+        <option value="">--Produit à supprimer--</option>
+        <?php
+            foreach($_SESSION["products"] as $index => $product)
+                {
+                    echo "<option value=".$product['name']."></option>".$product['name']."</option>";                
+                }
+        ?>
+    </select>
+
+
+    <script>
+
+        var btnIndex = document.getElementById("btnIndex");
+        btnIndex.addEventListener('click', function(){
+            //apres le click, demarre la page index.php
+            document.location.href = 'index.php';
+        });
+
+        var btnRemoveAll = document.getElementById("btnRemoveAll");
+        btnRemoveAll.addEventListener('click', function(){
+            //apres le click, supprime la courante session
+            <?php session_destroy(); ?>
+            //et la page est demarré
+            //window.location.reload();
+        })
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 </html>
