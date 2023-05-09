@@ -6,7 +6,8 @@ function removeAll()
 
 function removeProduct($id)
     {
-        unset($_SESSION["products"][$id]);
+        //unset($_SESSION["products"][$id]);
+        array_splice($_SESSION['products'], $id, 1);
     }
 
 function addQuantity($id)
