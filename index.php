@@ -1,3 +1,9 @@
+<?php
+    //il faut de parcourir le tableau de session, 
+    //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
+    //la session correspondante à l'utilisateur
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +31,7 @@
         <!-- action: le fichier à atteindre lorsque l'utilisateur soumettra le formulaire -->
         <!-- method: quelle methode HTTP les données du formulaire seront transmises au serveur -->
         <!-- POST: pour ne pas "polluer" l'URL avec les données du formulaire --> 
-        <form action="traitement.php" method="post">
+        <form action="traitement.php?action=addProduct" method="post">
             <p>
                 <label>
                     Nom du produit:
@@ -48,15 +54,14 @@
                 <input type="submit" name="submit" value="Ajouter le produit">
             </p>
         </form>
+        
     <p># de produits ajouté: <?=$nb_products?></p>
+
     <!-- Bouton pour changer la page -->
-    <button id="btnRecap">Consulter le récapitulatif</button>
-    <script>
-        var btn = document.getElementById("btnRecap");
-        btn.addEventListener('click', function(){
-            document.location.href = 'recap.php';
-        });
-    </script>
+    <form action='traitement.php?action=recap' method="post">
+        <button id="btnRecap">Consulter le récapitulatif</button>
+    </form>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>    

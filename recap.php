@@ -1,8 +1,9 @@
 <?php
-    //il faiut de parcourir le tableau de session, 
+    //il faut de parcourir le tableau de session, 
     //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
     //la session correspondante à l'utilisateur
     session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,6 +59,9 @@
                                 "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                                 "<td>".$product['qtt']."</td>",
                                 "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
+                                "<td><button type='submit' form='formRecap' formaction='traitement.php?action=addQuantity&id=".$index."'>+</button></td>",
+                                "<td><button type='submit' form='formRecap' formaction='traitement.php?action=deleteQuantity&id=".$index."'>-</button></td>",
+                                "<td><button type='submit' form='formRecap' formaction='traitement.php?action=removeProduct&id=".$index."'>Remove</button></td>",
                             "</tr>";
                     //pour couvrir le chaier des charges au complet
                     $totalGeneral += $product['total'];
@@ -75,41 +79,15 @@
         }
     ?>
 
+    
+    <form id="formRecap" method="post">
     <!-- Bouton pour changer la page -->
-    <button id="btnIndex">Ajouter un produit</button>
+        <button type=submit formaction='traitement.php?action=index' id="btnIndex">Ajouter un produit</button>
 
     <!-- Bouton pour supprimer tous les produits -->
-    <button id="btnRemoveAll">Supprimer tous les produits</button>
+        <button type=submit formaction='traitement.php?action=removeAll' id="btnRemoveAll">Supprimer tous les produits</button>
+    </form>
 
-    <!-- Bouton pour afficher et supprimer un produit -->
-    <select id="slcRemoveProduct">
-        <option value="">--Produit à supprimer--</option>
-        <?php
-            foreach($_SESSION["products"] as $index => $product)
-                {
-                    echo "<option value=".$product['name']."></option>".$product['name']."</option>";                
-                }
-        ?>
-    </select>
-
-
-    <script>
-
-        var btnIndex = document.getElementById("btnIndex");
-        btnIndex.addEventListener('click', function(){
-            //apres le click, demarre la page index.php
-            document.location.href = 'index.php';
-        });
-
-        var btnRemoveAll = document.getElementById("btnRemoveAll");
-        btnRemoveAll.addEventListener('click', function(){
-            //apres le click, supprime la courante session
-            <?php session_destroy(); ?>
-            //et la page est demarré
-            //window.location.reload();
-        })
-
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
