@@ -113,3 +113,100 @@ input:hover {
     align-items: center;
 
 }
+
+/* ------------------- RECAP -------------------- */
+
+#list {
+    border-collapse:collapse;
+    padding:5px;
+    margin:1.5rem 0;
+    background-color: rgb(214, 228, 233);
+}
+
+#list tr, thead {
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+}
+
+#list thead th{
+    font-weight: bold;
+    text-align: center;
+}
+
+#list th {
+    font-size: 0.85rem;
+    padding:1.25rem;
+    text-align: start;
+}
+
+#list td {
+    padding:1.25rem;
+    border-top: 1px rgb(202, 202, 202) solid;
+    text-align: center;
+}
+
+#list tr:last-of-type td{
+    font-weight: bold;
+    align-content: center;
+}
+
+
+
+#modifier {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 0.5rem;
+    font-size: 1rem;
+    color: #2E2C23;
+    background-color: #ecf3f3;
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+#modifier:first-of-type:hover {
+    transform: scale(1.1);
+    background-color: green;
+    color: #ecf3f3;
+}
+
+#modifier:second-of-type:hover {
+    transform: scale(1.1);
+    background-color: #110ad6;
+    color: #ecf3f3;
+}
+
+#modifier:last-of-type:hover {
+    transform: scale(1.1);
+    background-color: #d60a0a;
+    color: #ecf3f3;
+}
+
+#formRecap{
+    flex-direction: row;
+
+}
+
+#btnRemoveAll, #btnIndex {
+    font-size: 1.2rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .5s;
+    border-radius: 5px;
+    border: none;
+    outline:none;
+    height: 1.75rem;
+    transition:.5s;
+}
+
+#btnRemoveAll:hover, #btnIndex:hover {
+    background-color: #5291a8;
+    color:#ecf3f3;
+    cursor:pointer;
+}
