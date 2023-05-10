@@ -54,8 +54,9 @@
                 <input type="submit" name="submit" value="Ajouter le produit">
             </p>
         </form>
-        
-    <p># de produits ajouté: <?=$nb_products?></p>
+    
+    <!-- Notification du nombre de produits ajoutés -->
+    <p>Nombre de produits ajouté: <?=$nb_products?></p>
 
     <!-- Bouton pour changer la page -->
     <form action='traitement.php?action=recap' method="post">

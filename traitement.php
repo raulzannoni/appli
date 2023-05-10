@@ -60,7 +60,8 @@ if(isset($_GET['action']))
                         $_SESSION['message'] = "Produit ajouté au panier";
 
                     }
-
+                
+                // Apres l'ajoute de le produit, la page index est demarré
                 header("Location:index.php");
                 break;
 
@@ -80,7 +81,7 @@ if(isset($_GET['action']))
                     header("Location:recap.php");
                     break;
 
-                // Ajouter un produit
+                // Supprimer un produit
                 case "removeProduct":
                     removeProduct($id);
                     header("Location:recap.php");
@@ -92,7 +93,7 @@ if(isset($_GET['action']))
                     header("Location:recap.php");
                     break; 
 
-                // Diminuir un produit
+                // Diminuer un produit
                 case "deleteQuantity":
                     deleteQuantity($id);
                     header("Location:recap.php");
