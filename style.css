@@ -44,6 +44,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
+    animation: fadeOut 8s;
 }
 
 .insuccess, .removeAll, .removeProduct{
@@ -54,6 +55,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
+    animation: fadeOut 8s;
 }
 
 .deleteQuantity{
@@ -64,7 +66,25 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
+    animation: fadeOut 8s;
 }
+
+@-webkit-keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+ }
+
+
 
 h1, #panierVide{
     color:#2E2C23;
