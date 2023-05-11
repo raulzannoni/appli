@@ -98,12 +98,14 @@ input:hover {
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
+    transform: scale(1.03);
 }
 
 #btnRecap:hover {
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
+    transform: scale(1.03);
 }
 
 #nombreProducts{
@@ -170,20 +172,20 @@ input:hover {
 }
 
 #modifier1:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background-color: green;
     color: #ecf3f3;
 }
 
 
 #modifier2:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background-color: #110ad6;
     color: #ecf3f3;
 }
 
 #modifier3:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     background-color: #d60a0a;
     color: #ecf3f3;
 }
@@ -214,4 +216,5 @@ input:hover {
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
+    transform: scale(1.03);
 }
