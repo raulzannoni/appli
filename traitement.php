@@ -6,6 +6,7 @@
 session_start();
 require "functions.php";
 
+
 $id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
 if(isset($_GET['action']))
@@ -39,7 +40,7 @@ if(isset($_GET['action']))
 
                         //Il nous faut verifier si les filtres ont tous fonctinné grace à une nouvelle condition:
                         //il suffit de verifier implicitement si chaque variable contient une valeur jugée positive par PHP
-                        if($name && $price && $qtt)
+                        if($name && $price > 0 && $qtt > 0)
                             {
                                 //il nous faut stocker nos données en session, en ajoutant celles-ci au tableau $_SESSION que PHP nous fournit
                                 $product = [
@@ -55,9 +56,18 @@ if(isset($_GET['action']))
                                 //3) les [] sont raccourci pour indiquer à cet emplacement que nous ajoutons une nouvelle entrée au futur tableau "products" associé a cette clé
                                 //$_SESSION['products'] doit etre aussi un tableau afin d'y stocker de nouveaus produits par la suite
                                 $_SESSION['products'][] = $product;
+                                $_SESSION['message'] = "<p class='success'>Produit $name ajouté au panier</p>";
+                            }
+                        elseif($name && ($price <= 0 || $qtt <= 0))
+                            {
+                                $_SESSION['message'] = "<p class='insuccess'>Produit $name impossible à ajoutér au panier! Prix ou quantité negatif ou nul!</p>";
+                            }
+                        elseif(!$name)
+                            {
+                                $_SESSION['message'] = "<p class='insuccess'>Ajouter un nom au produit!</p>";
                             }
                         
-                        $_SESSION['message'] = "Produit ajouté au panier";
+                       
 
                     }
                 
@@ -79,6 +89,12 @@ if(isset($_GET['action']))
                 case "removeAll":
                     removeAll();
                     header("Location:recap.php");
+                    break;
+
+                // Vider le panier dans l'index
+                case "removeAllIndex":
+                    removeAll();
+                    header("Location:index.php");
                     break;
 
                 // Supprimer un produit
@@ -107,7 +123,7 @@ if(isset($_GET['action']))
 
 
 //si la requete POST è trasmet par la clé "submit"
-//ceça effectuera une redirection grace à laa fonction header()
+//ceça effectuera une redirection grace à la fonction header()
 //deux precautions:
 //1) la page qui l'emploie ne doit pas avoir émis un debut de reponse avant header()
 //2) l'appel de la fonction header() n'arrete pas l'execution du script courant

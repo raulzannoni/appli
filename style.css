@@ -15,24 +15,64 @@ html{
 } 
 
 body {
-    background: radial-gradient(ellipse, rgb(98, 153, 173) 5%, rgb(194, 215, 224) 100%);
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
+     background: radial-gradient(ellipse, rgb(98, 153, 173) 5%, rgb(194, 215, 224) 100%);
 
 }
 
 /* ------------------- INDEX -------------------- */
 
+#wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    min-height: 100vh;
+}
+
+#form {
+    max-width:500px ;
+}
+
+.success, .addQuantity{
+    background-color: green;
+    color : white;
+    padding: 10px;
+    border-radius: 10px;
+    top : 20px;
+    left : 20px;
+    position: fixed;
+}
+
+.insuccess, .removeAll, .removeProduct{
+    background-color: #d60a0a;
+    color : white;
+    padding: 10px;
+    border-radius: 10px;
+    top : 20px;
+    left : 20px;
+    position: fixed;
+}
+
+.deleteQuantity{
+    background-color: #110ad6;
+    color : white;
+    padding: 10px;
+    border-radius: 10px;
+    top : 20px;
+    left : 20px;
+    position: fixed;
+}
+
 h1, #panierVide{
     color:#2E2C23;
-    font-weight: 400;
+    font-weight: 500;
     text-align: center;
     margin-bottom: 10px;
 }
+
 
 form {
     display: flex;
@@ -65,7 +105,7 @@ form label {
     font-size: 1.2rem;
 }
 
-form input, #btnRecap {
+form input, #btnRecap, #btnRemoveAllIndex {
     width: 100%;
     border-radius: 5px;
     border: none;
@@ -75,7 +115,7 @@ form input, #btnRecap {
 }
 
 
-input, #btnRecap {
+input, #btnRecap, #btnRemoveAllIndex {
     font-size: 1.2rem;
     padding: 1.5rem;
     display: flex;
@@ -83,6 +123,14 @@ input, #btnRecap {
     align-items: center;
     flex-direction: column;
     transition: .5s;
+}
+
+#btnRecap{
+    margin-bottom: 5px;
+}
+
+#btnRemoveAllIndex{
+    margin-top: 5px;
 }
 
 input {
@@ -101,7 +149,7 @@ input:hover {
     transform: scale(1.03);
 }
 
-#btnRecap:hover {
+#btnRecap:hover, #btnRemoveAllIndex:hover {
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
@@ -128,6 +176,7 @@ input:hover {
     padding:5px;
     margin:1.5rem 0;
     background-color: rgb(214, 228, 233);
+    align-items: center;
 }
 
 #list tr, thead {
@@ -197,22 +246,23 @@ input:hover {
 
 #formRecap{
     flex-direction: row;
-
+    justify-content: space-evenly;
 }
 
-#btnRemoveAll, #btnIndex {
+#btnIndex, #btnRemoveAll  {
     font-size: 1.2rem;
     padding: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     transition: .5s;
     border-radius: 5px;
     border: none;
     outline:none;
     height: 1.75rem;
     transition:.5s;
+    width: auto;
+    margin: 0;
 }
 
 #btnRemoveAll:hover, #btnIndex:hover {
