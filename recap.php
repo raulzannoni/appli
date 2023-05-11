@@ -16,6 +16,7 @@
     <title>Récapitulatif des produits</title>
 </head>
 <body>
+    <h1>Récapitulatif des produits</h1>
     <?php 
     //pour assurer que le tableau de session contienne des informations à afficher
     //var_dump($_SESSION);
@@ -25,7 +26,7 @@
     //2) si cette clé existe mais ne contient aucune donnée: empty
     if(!isset($_SESSION['products']) || empty($_SESSION['products']))
         {
-            echo "<p>Aucun produit en session...</p>";
+            echo "<p id='panierVide'>Aucun produit en session...</p>";
         }
 
     //sinon, on va à afficher le contenu de $_SESSION['products'] dans un tableau HTML <table>
