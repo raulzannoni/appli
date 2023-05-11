@@ -149,12 +149,12 @@ input:hover {
 
 #list tr:last-of-type td{
     font-weight: bold;
-    align-content: center;
+    /*align-content: center;*/
 }
 
 
 
-#modifier {
+#modifier1, #modifier2, #modifier3 {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -169,23 +169,26 @@ input:hover {
     transition: .3s;
 }
 
-#modifier:first-of-type:hover {
+#modifier1:hover {
     transform: scale(1.1);
     background-color: green;
     color: #ecf3f3;
 }
 
-#modifier:second-of-type:hover {
+
+#modifier2:hover {
     transform: scale(1.1);
     background-color: #110ad6;
     color: #ecf3f3;
 }
 
-#modifier:last-of-type:hover {
+#modifier3:hover {
     transform: scale(1.1);
     background-color: #d60a0a;
     color: #ecf3f3;
 }
+
+
 
 #formRecap{
     flex-direction: row;

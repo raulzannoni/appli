@@ -61,9 +61,9 @@
                                 "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                                 "<td>".$product['qtt']."</td>",
                                 "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                                "<td><button id='modifier' type='submit' form='formRecap' formaction='traitement.php?action=addQuantity&id=".$index."'><i class='fas fa-plus'></i></button></td>",
-                                "<td><button id='modifier' type='submit' form='formRecap' formaction='traitement.php?action=deleteQuantity&id=".$index."'><i class='fas fa-minus'></i></button></td>",
-                                "<td><button id='modifier' type='submit' form='formRecap' formaction='traitement.php?action=removeProduct&id=".$index."'><i class='fas fa-trash-alt'></i></button></td>",
+                                "<td><button id='modifier1' type='submit' form='formRecap' formaction='traitement.php?action=addQuantity&id=".$index."'><i class='fas fa-plus'></i></button></td>",
+                                "<td><button id='modifier2' type='submit' form='formRecap' formaction='traitement.php?action=deleteQuantity&id=".$index."'><i class='fas fa-minus'></i></button></td>",
+                                "<td><button id='modifier3' type='submit' form='formRecap' formaction='traitement.php?action=removeProduct&id=".$index."'><i class='fas fa-trash-alt'></i></button></td>",
                             "</tr>";
                     //pour couvrir le chaier des charges au complet
                     $totalGeneral += $product['total'];
