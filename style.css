@@ -44,7 +44,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s;
+    animation: fadeOut 8s infinite;
 }
 
 .insuccess, .removeAll, .removeProduct{
@@ -55,7 +55,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s;
+    animation: fadeOut 8s infinite;
 }
 
 .deleteQuantity{
@@ -66,7 +66,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s;
+    animation: fadeOut 8s infinite;
 }
 
 @-webkit-keyframes fadeOut {
@@ -84,13 +84,18 @@ body {
     animation-name: fadeOut;
  }
 
-
+ /*
+ .success:hover, .addQuantity:hover, .deleteQuantity:hover, .insuccess:hover, .removeAll:hover, .removeProduct:hover{
+    opacity: 100%;
+ }
+*/
 
 h1, #panierVide{
     color:#2E2C23;
     font-weight: 500;
     text-align: center;
     margin-bottom: 10px;
+    
 }
 
 
@@ -125,7 +130,7 @@ form label {
     font-size: 1.2rem;
 }
 
-form input, #btnRecap, #btnRemoveAllIndex {
+form #inputText, #inputSubmit, #btnRecap, #btnRemoveAllIndex, #btnAdd {
     width: 100%;
     border-radius: 5px;
     border: none;
@@ -135,7 +140,9 @@ form input, #btnRecap, #btnRemoveAllIndex {
 }
 
 
-input, #btnRecap, #btnRemoveAllIndex {
+
+
+#inputText, #inputSubmit, #btnRecap, #btnRemoveAllIndex, #btnAdd {
     font-size: 1.2rem;
     padding: 1.5rem;
     display: flex;
@@ -149,7 +156,7 @@ input, #btnRecap, #btnRemoveAllIndex {
     margin-bottom: 5px;
 }
 
-#btnRemoveAllIndex{
+#btnRemoveAllIndex, #btnAdd{
     margin-top: 5px;
 }
 
@@ -157,19 +164,15 @@ input {
     width:fit-content;
 }
 
-input name, price, qtt{
-    align-items: center;
 
-}
-
-input:hover {
+#inputText:hover, #inputSubmit:hover {
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
     transform: scale(1.03);
 }
 
-#btnRecap:hover, #btnRemoveAllIndex:hover {
+#btnRecap:hover, #btnRemoveAllIndex:hover, #btnAdd:hover{
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
