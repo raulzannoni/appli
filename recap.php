@@ -1,5 +1,9 @@
 <?php
+    //il faut de parcourir le tableau de session, 
+    //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
+    //la session correspondante à l'utilisateur
     session_start();
+    //demarre l'output avant qu'il est envoyé au serveur
     ob_start();
 
     if(isset($_SESSION['message']))
@@ -87,6 +91,11 @@
 
     <?php
 
+    //stocke les données de l'output in une variable
     $content = ob_get_clean();
+
+    //titre de la page
     $titre = "Récap";
+
+    //demande de le template
     require "template.php";

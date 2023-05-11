@@ -3,18 +3,9 @@
     //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
     //la session correspondante à l'utilisateur
     session_start();
+
+    //demarre l'output avant qu'il est envoyé au serveur
     ob_start();
-
-    var_dump($_FILES);
-    var_dump($_POST);
-
-    if(isset($_FILES['file'])){
-        $tmpName = $_FILES['file']['tmp_name'];
-        $name = $_FILES['file']['name'];
-        $size = $_FILES['file']['size'];
-        $error = $_FILES['file']['error'];
-    }
-
 
         if(isset($_SESSION['message'])){
             echo $_SESSION['message'];
@@ -48,7 +39,7 @@
                     </p>
                     <p>
                         <label for="file">
-                            Fichier:
+                            Fichier du produit:
                         </label>
                             <input id="inputFile" type="file" name="file">
                     </p>
@@ -66,9 +57,8 @@
                     </p>
                     
                     <!-- Bouton pour ajouter le produit -->
-                    <button id="btnAdd" formaction="traitement.php?action=addProduct" id="inputSubmit" type="submit" name="submit" >Ajouter le produit</button>
+                    <button type="submit" id="btnAdd"  name="submit" >Ajouter le produit</button>
                     
-
                     <!-- Notification du nombre de produits ajoutés -->
                     <p id="nombreProducts">Nombre de produits ajouté: <?=$nb_products?></p>
 
@@ -84,11 +74,15 @@
 
     
 
-   
-    
+    <?php
 
-        <?php
 
-$content = ob_get_clean();
-$titre = "Index";
-require "template.php";
+
+    //stocke les données de l'output in une variable
+    $content = ob_get_clean();
+
+    //titre de la page
+    $titre = "Index";
+
+    //demande de le template
+    require "template.php";

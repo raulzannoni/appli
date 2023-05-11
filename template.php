@@ -1,9 +1,6 @@
-<?php
-    //il faut de parcourir le tableau de session, 
-    //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
-    //la session correspondante à l'utilisateur
-
-?>
+<!-- template pour chaque page affiché, il faut utiliser ob_start-->
+<!-- $titre = titre de la page ajouté aprés l'initialisation de la variable ob_get_clean-->
+<!-- $titre = initialisation de la variable ob_get_clean, que est le codage à gerer de la page-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +12,7 @@
     <title> <?= $titre ?></title>
 </head>
 <body>
+
 
     <?= $content ?>
 

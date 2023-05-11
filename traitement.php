@@ -38,6 +38,13 @@ if(isset($_GET['action']))
                         //FILTER_VALIDATE_INT: validera la quantité que si celle-ci est un nombre entier different de zero
                         $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
+                        if(isset($_FILES['file'])){
+                            $tmpName = $_FILES['file']['tmp_name'];
+                            $name = $_FILES['file']['name'];
+                            $size = $_FILES['file']['size'];
+                            $error = $_FILES['file']['error'];
+                        }
+
                         //Il nous faut verifier si les filtres ont tous fonctinné grace à une nouvelle condition:
                         //il suffit de verifier implicitement si chaque variable contient une valeur jugée positive par PHP
                         if($name && $price > 0 && $qtt > 0)
@@ -45,10 +52,12 @@ if(isset($_GET['action']))
                                 //il nous faut stocker nos données en session, en ajoutant celles-ci au tableau $_SESSION que PHP nous fournit
                                 $product = [
                                     "name"  => $name,
+                                    "file"  => $_FILES['file'],
                                     "price" => $price,
                                     "qtt"   => $qtt,
                                     "total" => $price*$qtt
                                 ];
+                            
 
                                 //il faut enregistrer ce produit nouvellement créé par en session
                                 //1) on sollicite le tableau de session $_SESSION fourni par PHP
@@ -56,6 +65,7 @@ if(isset($_GET['action']))
                                 //3) les [] sont raccourci pour indiquer à cet emplacement que nous ajoutons une nouvelle entrée au futur tableau "products" associé a cette clé
                                 //$_SESSION['products'] doit etre aussi un tableau afin d'y stocker de nouveaus produits par la suite
                                 $_SESSION['products'][] = $product;
+                                move_uploaded_file($tmpName, './upload/'.$file);
                                 $_SESSION['message'] = "<p class='success'>Produit $name ajouté au panier</p>";
                             }
                         elseif($name && ($price <= 0 || $qtt <= 0))

@@ -44,7 +44,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s infinite;
+    animation: fadeOut 8s forwards;
 }
 
 .insuccess, .removeAll, .removeProduct{
@@ -55,7 +55,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s infinite;
+    animation: fadeOut 8s forwards;
 }
 
 .deleteQuantity{
@@ -66,7 +66,7 @@ body {
     top : 20px;
     left : 20px;
     position: fixed;
-    animation: fadeOut 8s infinite;
+    animation: fadeOut 8s forwards;
 }
 
 @-webkit-keyframes fadeOut {
