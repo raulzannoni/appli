@@ -44,7 +44,7 @@ if(isset($_GET['action']))
                                         //uniqid va à créer un ID unique et aleatoire
                                         $uniqueName = uniqid('', true);
                                         
-                                        //on va à créer la variable image ID + extension
+                                        //on va à créer la variable img = ID + extension
                                         $img = $uniqueName.'.'.$extension;
 
                                         //fonction poutr envoyer l'image dans le dossier

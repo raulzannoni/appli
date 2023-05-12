@@ -135,11 +135,51 @@ form #inputText, #inputSubmit, #btnRecap, #btnRemoveAllIndex, #btnAdd {
     border-radius: 5px;
     border: none;
     outline:none;
+    color: #2E2C23;
     height: 1.75rem;
     transition:.5s;
 }
 
+.inputFile  {
+    display: flex;
+    color: transparent;
+}
 
+.inputFile::-webkit-file-upload-button  {
+    visibility: hidden;
+}
+
+.inputFile::before {
+    width:fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    content: "Sélectionnez l'image";
+    color: #2E2C23;
+    display: inline-block;
+    background-color: white;
+    /*border: 1px solid #999;*/
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    /*-webkit-user-select: none;*/
+    cursor: pointer;
+    /*text-shadow: 1px 1px #fff;*/
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  .inputFile:hover::before {
+    background-color: #5291a8;
+    color:#ecf3f3;
+    cursor:pointer;
+    transform: scale(1.03);
+  }
+  .inputFile:active {
+    outline: 0;
+  }
+  .inputFile:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+  }
 
 
 #inputText, #inputSubmit, #btnRecap, #btnRemoveAllIndex, #btnAdd {
@@ -152,12 +192,12 @@ form #inputText, #inputSubmit, #btnRecap, #btnRemoveAllIndex, #btnAdd {
     transition: .5s;
 }
 
-#btnRecap{
-    margin-bottom: 5px;
+#btnRecap, #inputFile{
+    margin-bottom: 10px;
 }
 
 #btnRemoveAllIndex, #btnAdd{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 input {
@@ -165,7 +205,7 @@ input {
 }
 
 
-#inputText:hover, #inputSubmit:hover {
+#inputText:hover, #inputSubmit:hover{
     background-color: #5291a8;
     color:#ecf3f3;
     cursor:pointer;
@@ -179,7 +219,7 @@ input {
     transform: scale(1.03);
 }
 
-#nombreProducts{
+#nombreProducts, #totalElements{
     width:fit-content;
     margin: 10px 0;
     padding: 5px 0;
@@ -292,3 +332,47 @@ input {
 }
 
 /* ------------------- MODAL -------------------- */
+
+.modal_content {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrer le contenu de la modal horizontalement et verticalement */
+    max-width: 80%; /* Limiter la largeur du contenu pour éviter que la modal ne soit trop grande sur les écrans larges */
+}
+
+.modal_btn {
+    cursor:pointer;
+}
+
+.modal_content img {
+    width:40%;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1.5rem;
+}
+  
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: .3s;
+}
+  
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  

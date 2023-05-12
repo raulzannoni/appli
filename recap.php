@@ -5,17 +5,9 @@
     session_start();
     //demarre l'output avant qu'il est envoyé au serveur
     ob_start();
-
-    if(isset($_SESSION['message']))
-        {
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-
+    
     echo "<div id='wrapper'>",
             "<h1>Récapitulatif des produits</h1>";
-    //pour assurer que le tableau de session contienne des informations à afficher
-    //var_dump($_SESSION);
     
     //Ajoute de deux conditions:
     //1) si le clé "products" du tableau de $_SESSION n'existe pas: !isset()
@@ -57,7 +49,7 @@
                                     "<div class='modal'>",
                                         "<div class='modal_content'>", 
                                             "<span class='close'>&times;</span>",  
-                                            "<figure><img class='img' src='upload/".$product['img']."' alt='img_produit'></figure>",
+                                            "<figure><img class='img' src='upload/".$product['img']."' alt='img_".$product['name']."'></figure>",
                                         "</div>",
                                     "</div>",
                                 "</td>",
