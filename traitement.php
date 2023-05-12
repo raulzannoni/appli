@@ -21,6 +21,41 @@ if(isset($_GET['action']))
                     //si la requete POST transmet bien une clé "submit" au serveur
                     if(isset($_POST['submit']))
                     {
+                        //on va à ajouter l'image apres le submit dans l'index
+                        if(isset($_FILES['file']))
+                            {
+                                $imgTmpName = $_FILES['file']['tmp_name'];
+                                $imgName = $_FILES['file']['name'];
+                                $imgSize = $_FILES['file']['size'];
+                                $imgError = $_FILES['file']['error'];
+                                
+                                //on va a prendre le dernier element de le nome de le file (l'extension)
+                                $tabExtension = explode('.', $imgName);
+                                $extension = strtolower(end($tabExtension));
+        
+                                //on va a verifier que l'extension de le file ajouté soit effectivement d'une image
+                                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                                $maxSize = 400000;
+                                
+                                //pour envoyer l'image dans notre dossier, on doit verifier que l'estension soit correct, 
+                                //qu'il n'y ait pas des errors et que le dimension de l'image soit raisonnable
+                                if(in_array($extension, $extensions) && $imgSize <= $maxSize && $imgError == 0)
+                                    {
+                                        //uniqid va à créer un ID unique et aleatoire
+                                        $uniqueName = uniqid('', true);
+                                        
+                                        //on va à créer la variable image ID + extension
+                                        $img = $uniqueName.'.'.$extension;
+
+                                        //fonction poutr envoyer l'image dans le dossier
+                                        move_uploaded_file($imgTmpName, './upload/'.$img);
+                                    }
+                                else
+                                    {
+                                        echo "Mauvaise extension ou image trop volumineuse";
+                                    }
+                            }
+
                         //nous devons verifier l'integrité des valeurs transimes dans la tableau $_POST
                         //en fonction de celles que nous attendons réellement
                         
@@ -38,13 +73,6 @@ if(isset($_GET['action']))
                         //FILTER_VALIDATE_INT: validera la quantité que si celle-ci est un nombre entier different de zero
                         $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
-                        if(isset($_FILES['file'])){
-                            $tmpName = $_FILES['file']['tmp_name'];
-                            $name = $_FILES['file']['name'];
-                            $size = $_FILES['file']['size'];
-                            $error = $_FILES['file']['error'];
-                        }
-
                         //Il nous faut verifier si les filtres ont tous fonctinné grace à une nouvelle condition:
                         //il suffit de verifier implicitement si chaque variable contient une valeur jugée positive par PHP
                         if($name && $price > 0 && $qtt > 0)
@@ -52,7 +80,7 @@ if(isset($_GET['action']))
                                 //il nous faut stocker nos données en session, en ajoutant celles-ci au tableau $_SESSION que PHP nous fournit
                                 $product = [
                                     "name"  => $name,
-                                    "file"  => $_FILES['file'],
+                                    "img"   => $img,
                                     "price" => $price,
                                     "qtt"   => $qtt,
                                     "total" => $price*$qtt
@@ -65,7 +93,6 @@ if(isset($_GET['action']))
                                 //3) les [] sont raccourci pour indiquer à cet emplacement que nous ajoutons une nouvelle entrée au futur tableau "products" associé a cette clé
                                 //$_SESSION['products'] doit etre aussi un tableau afin d'y stocker de nouveaus produits par la suite
                                 $_SESSION['products'][] = $product;
-                                move_uploaded_file($tmpName, './upload/'.$file);
                                 $_SESSION['message'] = "<p class='success'>Produit $name ajouté au panier</p>";
                             }
                         elseif($name && ($price <= 0 || $qtt <= 0))
@@ -81,7 +108,12 @@ if(isset($_GET['action']))
 
                     }
                 
-                // Apres l'ajoute de le produit, la page index est demarré
+                //si la requete POST è trasmet par la clé "submit"
+                //ceça effectuera une redirection grace à la fonction header()
+                //deux precautions:
+                //1) la page qui l'emploie ne doit pas avoir émis un debut de reponse avant header()
+                //2) l'appel de la fonction header() n'arrete pas l'execution du script courant
+                //Apres l'ajoute de le produit, la page index est demarré
                 header("Location:index.php");
                 break;
 
@@ -128,14 +160,5 @@ if(isset($_GET['action']))
 
             }
     }
-
-
-
-
-//si la requete POST è trasmet par la clé "submit"
-//ceça effectuera une redirection grace à la fonction header()
-//deux precautions:
-//1) la page qui l'emploie ne doit pas avoir émis un debut de reponse avant header()
-//2) l'appel de la fonction header() n'arrete pas l'execution du script courant
 
 ?>

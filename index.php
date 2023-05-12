@@ -7,10 +7,13 @@
     //demarre l'output avant qu'il est envoyé au serveur
     ob_start();
 
+        //s'il y a un message => affichement et effacement de la SESSION message
         if(isset($_SESSION['message'])){
             echo $_SESSION['message'];
             unset($_SESSION['message']);
         }
+
+        //total de le nombre des produits ajoutés
         $nb_products = 0;
         
             if(!isset($_SESSION['products']) || empty($_SESSION['products']))
@@ -30,7 +33,7 @@
                 <!-- action: le fichier à atteindre lorsque l'utilisateur soumettra le formulaire -->
                 <!-- method: quelle methode HTTP les données du formulaire seront transmises au serveur -->
                 <!-- POST: pour ne pas "polluer" l'URL avec les données du formulaire --> 
-                <form action="traitement.php?action=addProduct" method="post" enctype="multipart/form-data">
+                <form action="traitement.php?action=addProduct" method="post" autocomplete="off" enctype="multipart/form-data">
                     <p>
                         <label>
                             Nom du produit:
@@ -46,13 +49,13 @@
                     <p>
                         <label>
                             Prix du produit:
-                            <input id="inputText" type="number" step= "any" name="price">
+                            <input id="inputText" type="number" step= "any" min="0.00" name="price">
                         </label>
                     </p>
                     <p>
                         <label>
                             Quantité desirée:
-                            <input id="inputText" type="number" name="qtt" value="1">
+                            <input id="inputText" type="number" min="1" name="qtt">
                         </label>
                     </p>
                     
@@ -71,12 +74,7 @@
             </div>
         </div>
     
-
-    
-
     <?php
-
-
 
     //stocke les données de l'output in une variable
     $content = ob_get_clean();
@@ -86,3 +84,5 @@
 
     //demande de le template
     require "template.php";
+
+    ?>

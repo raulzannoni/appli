@@ -53,7 +53,14 @@
                     //number_format(variable à modifier, nombre de decimales souhaité, caractere separateur decimal, caractere separateur de milliers)
                     echo    "<tr>",
                                 "<td>".$index + 1 ."</td>",
-                                "<td>".$product['name']."</td>",
+                                "<td><a class='modal_btn'>".$product['name']."</a>",
+                                    "<div class='modal'>",
+                                        "<div class='modal_content'>", 
+                                            "<span class='close'>&times;</span>",  
+                                            "<figure><img class='img' src='upload/".$product['img']."' alt='img_produit'></figure>",
+                                        "</div>",
+                                    "</div>",
+                                "</td>",
                                 "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                                 "<td>".$product['qtt']."</td>",
                                 "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
@@ -87,8 +94,6 @@
     </form>
     </div>
 
-   
-
     <?php
 
     //stocke les données de l'output in une variable
@@ -99,3 +104,5 @@
 
     //demande de le template
     require "template.php";
+
+    ?>

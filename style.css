@@ -224,10 +224,6 @@ input {
     text-align: center;
 }
 
-#list tr:last-of-type td{
-    font-weight: bold;
-    /*align-content: center;*/
-}
 
 
 
@@ -294,3 +290,5 @@ input {
     cursor:pointer;
     transform: scale(1.03);
 }
+
+/* ------------------- MODAL -------------------- */
