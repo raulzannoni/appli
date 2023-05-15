@@ -22,28 +22,21 @@
             <!-- POST: pour ne pas "polluer" l'URL avec les données du formulaire --> 
             <form action="traitement.php?action=addProduct" method="post" autocomplete="off" enctype="multipart/form-data">
                 <p>
-                    <label>
-                        Nom du produit:
-                        <input id="inputText" type="text" name="name">
-                    </label>
+                    <label>Nom du produit:</label>
+                    <input id="inputText" type="text" name="name">
+                </p>
+                    <label>Fichier du produit:</label>
+                    <div class="file-input">
+                        <label for="file">Sélectionnez l'image</label>
+                        <input class="inputFile" type="file" name="file"/>
+                    </div>
+                <p>
+                    <label> Prix du produit: </label>
+                    <input id="inputText" type="number" step= "any" min="0.00" name="price">                   
                 </p>
                 <p>
-                    <label for="file">
-                        Fichier du produit:
-                    </label>
-                        <input class="inputFile" type="file" name="file" >
-                </p>
-                <p>
-                    <label>
-                        Prix du produit:
-                        <input id="inputText" type="number" step= "any" min="0.00" name="price">
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Quantité desirée:
-                        <input id="inputText" type="number" min="1" name="qtt">
-                    </label>
+                    <label>Quantité desirée:  </label>
+                    <input id="inputText" type="number" min="1" name="qtt">
                 </p>
                     
                 <!-- Bouton pour ajouter le produit -->
