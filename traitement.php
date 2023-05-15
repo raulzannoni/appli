@@ -66,8 +66,17 @@ if(isset($_GET['action']))
                                         //on va à créer la variable img = ID + extension
                                         $img = $uniqueName.'.'.$extension;
 
+                                        //On doit exprimer le chemin de le dossier où les images doivent etré stockées (sur le Mac)
+                                        $path = "/Applications/XAMPP/xamppfiles/htdocs/raul_ZANNONI/appli/upload/";
+
                                         //fonction poutr envoyer l'image dans le dossier upload
                                         move_uploaded_file($imgTmpName, './upload/'.$img);
+                                        
+                                        //si le chargement n'est pas marché, on utilise le PATH complet de le dossier "upload"
+                                        if(!move_uploaded_file($imgTmpName, './upload/'.$img))
+                                            {
+                                                move_uploaded_file($imgTmpName, $path.$img);
+                                            }
                                     }
                                 else
                                     {
@@ -88,7 +97,6 @@ if(isset($_GET['action']))
                                     "total" => $price*$qtt
                                 ];
                             
-
                                 //il faut enregistrer ce produit nouvellement créé par en session
                                 //1) on sollicite le tableau de session $_SESSION fourni par PHP
                                 //2) on indique la clé "products" de ce tableau. Si la clé n'existe pas, PHP la créera au sein de $_SESSION
@@ -107,9 +115,6 @@ if(isset($_GET['action']))
                             {
                                 $_SESSION['message'] = "<p class='insuccess'>Ajouter un nom au produit!</p>";
                             }
-                        
-                       
-
                     }
                 
                 //si la requete POST è trasmet par la clé "submit"
