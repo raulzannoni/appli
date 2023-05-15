@@ -54,7 +54,7 @@ if(isset($_GET['action']))
         
                                 //on va a verifier que l'extension de le file ajouté soit effectivement d'une image
                                 $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-                                $maxSize = 400000;
+                                $maxSize = 400000000;
                                 
                                 //pour envoyer l'image dans notre dossier, on doit verifier que l'estension soit correct, 
                                 //qu'il n'y ait pas des errors et que le dimension de l'image soit raisonnable
