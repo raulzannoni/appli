@@ -6,15 +6,16 @@
 session_start();
 require "functions.php";
 
-
+//numero de l'action ajouté en session
 $id = (isset($_GET['id'])) ? $_GET['id'] : null;
 
+//s'il y a une interaction dans la page:
 if(isset($_GET['action']))
     {
         switch($_GET['action'])
             {
                 case 'addProduct':
-                    
+
                     //pour limiter l'acces à traitement.php 
                     //par les seules requetes HTTP provenant de la soumission de notre formulaire
                     //on va à verifier de la clé "submit" dans le tablea $_POST
