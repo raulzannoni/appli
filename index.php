@@ -1,5 +1,6 @@
 <?php
 
+    require 'functions.php';
     //il faut de parcourir le tableau de session, 
     //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
     //la session correspondante à l'utilisateur
@@ -10,7 +11,7 @@
 
     //total de le nombre des produits ajoutés
     $nb_products = (!isset($_SESSION['products']) || empty($_SESSION['products'])) ? 0 : count($_SESSION['products']);
-    //$totalElements = totalElements(); 
+    $total = totalElements(); 
     ?>
 
     <div id=wrapper>
@@ -48,7 +49,7 @@
                 <p id="nombreProducts">Nombre de produits ajouté: <?= $nb_products ?></p>
 
                 <!-- Notification du nombre de produits ajoutés -->
-                <p id="totalElements">Nombre des elements ajoutés: <?php //$totalElements ?></p>
+                <p id="totalElements">Nombre des elements ajoutés: <?= $total ?></p>
 
                 <!-- Bouton pour changer la page -->
                 <button formaction='traitement.php?action=recap' id="btnRecap">Consulter le panier</button>
