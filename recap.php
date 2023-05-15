@@ -1,6 +1,5 @@
 <?php
 
-    var_dump($_FILES);
     //il faut de parcourir le tableau de session, 
     //il est donc necessaire d'appeler la fonction session_start() en debut de fichier afin de recuperer
     //la session correspondante à l'utilisateur

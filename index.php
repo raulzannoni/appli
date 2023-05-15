@@ -20,15 +20,17 @@
             <!-- action: le fichier à atteindre lorsque l'utilisateur soumettra le formulaire -->
             <!-- method: quelle methode HTTP les données du formulaire seront transmises au serveur -->
             <!-- POST: pour ne pas "polluer" l'URL avec les données du formulaire --> 
-            <form action="traitement.php?action=addProduct" method="post" autocomplete="off" enctype="multipart/form-data">
+            <form method="post" autocomplete="off" enctype="multipart/form-data">
                 <p>
                     <label>Nom du produit:</label>
                     <input id="inputText" type="text" name="name">
                 </p>
                     <label>Fichier du produit:</label>
                     <div class="file-input">
-                        <label for="file">Sélectionnez l'image</label>
-                        <input class="inputFile" type="file" name="file"/>
+                        <!--for = id of the input-->
+                        <label for="inputFile">Sélectionnez l'image</label>
+                        <input class="inputFile" id="inputFile" type="file">
+                        <p class="file-name"></p>
                     </div>
                 <p>
                     <label> Prix du produit: </label>
@@ -40,7 +42,7 @@
                 </p>
                     
                 <!-- Bouton pour ajouter le produit -->
-                <button type="submit" id="btnAdd"  name="submit" >Ajouter le produit</button>
+                <button formaction="traitement.php?action=addProduct" type="submit" id="btnAdd"  name="submit" >Ajouter le produit</button>
                     
                 <!-- Notification du nombre de produits ajoutés -->
                 <p id="nombreProducts">Nombre de produits ajouté: <?= $nb_products ?></p>
@@ -49,7 +51,7 @@
                 <p id="totalElements">Nombre des elements ajoutés: <?php //$totalElements ?></p>
 
                 <!-- Bouton pour changer la page -->
-                <button formaction='traitement.php?action=recap' method="post" id="btnRecap">Consulter le panier</button>
+                <button formaction='traitement.php?action=recap' id="btnRecap">Consulter le panier</button>
 
                 <!-- Bouton pour supprimer le panier -->
                 <button formaction='traitement.php?action=removeAllIndex' id="btnRemoveAllIndex">Supprimer tous les produits</button>

@@ -21,6 +21,23 @@ if(isset($_GET['action']))
                     //si la requete POST transmet bien une clé "submit" au serveur
                     if(isset($_POST['submit']))
                     {
+                        //nous devons verifier l'integrité des valeurs transimes dans la tableau $_POST
+                        //en fonction de celles que nous attendons réellement
+                        
+                        //filter_input(): renvoie de cas de succes la valeur assainie correspondant au champ traité
+                        //sinon false si le filtre échoue ou null si le champ sollicité par le nettoyage n'existait pas dans la requete POST
+                        //PAS DE RISQUE QUE L'UTILISATEUR TRANSMETTRE DES CHAMPS SUPPLEMENTAIRES!
+
+                        //FILTER_SANITIZE_SPECIAL_CHARS: supprime une chaine de caracteres de toute presence de caracteres speciaux et de toute balise HTML potentielle ou les encode
+                        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                        //FILTER_VALIDATE_FLOAT: validera le prix s'il est un nombre à virgule
+                        //la flag FILTER_FLAG_ALLOW_FRACTION pour permettre l'utilisation de caractere "," ou "." pour la decimale
+                        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                        
+                        //FILTER_VALIDATE_INT: validera la quantité que si celle-ci est un nombre entier different de zero
+                        $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+
                         //on va à ajouter l'image apres le submit dans l'index
                         if(isset($_FILES['file']))
                             {
@@ -47,31 +64,14 @@ if(isset($_GET['action']))
                                         //on va à créer la variable img = ID + extension
                                         $img = $uniqueName.'.'.$extension;
 
-                                        //fonction poutr envoyer l'image dans le dossier
+                                        //fonction poutr envoyer l'image dans le dossier upload
                                         move_uploaded_file($imgTmpName, './upload/'.$img);
                                     }
                                 else
                                     {
-                                        echo "Mauvaise extension ou image trop volumineuse";
+                                        $_SESSION['message'] = "<p class='insuccess fadeOut'>Mauvaise extension ou image trop volumineuse!</p>";
                                     }
                             }
-
-                        //nous devons verifier l'integrité des valeurs transimes dans la tableau $_POST
-                        //en fonction de celles que nous attendons réellement
-                        
-                        //filter_input(): renvoie de cas de succes la valeur assainie correspondant au champ traité
-                        //sinon false si le filtre échoue ou null si le champ sollicité par le nettoyage n'existait pas dans la requete POST
-                        //PAS DE RISQUE QUE L'UTILISATEUR TRANSMETTRE DES CHAMPS SUPPLEMENTAIRES!
-
-                        //FILTER_SANITIZE_SPECIAL_CHARS: supprime une chaine de caracteres de toute presence de caracteres speciaux et de toute balise HTML potentielle ou les encode
-                        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-                        //FILTER_VALIDATE_FLOAT: validera le prix s'il est un nombre à virgule
-                        //la flag FILTER_FLAG_ALLOW_FRACTION pour permettre l'utilisation de caractere "," ou "." pour la decimale
-                        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                        
-                        //FILTER_VALIDATE_INT: validera la quantité que si celle-ci est un nombre entier different de zero
-                        $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
                         //Il nous faut verifier si les filtres ont tous fonctinné grace à une nouvelle condition:
                         //il suffit de verifier implicitement si chaque variable contient une valeur jugée positive par PHP
@@ -95,10 +95,12 @@ if(isset($_GET['action']))
                                 $_SESSION['products'][] = $product;
                                 $_SESSION['message'] = "<p class='success'>Produit $name ajouté au panier</p>";
                             }
+
                         elseif($name && ($price <= 0 || $qtt <= 0))
                             {
                                 $_SESSION['message'] = "<p class='insuccess'>Produit $name impossible à ajoutér au panier! Prix ou quantité negatif ou nul!</p>";
                             }
+                            
                         elseif(!$name)
                             {
                                 $_SESSION['message'] = "<p class='insuccess'>Ajouter un nom au produit!</p>";
