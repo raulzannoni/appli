@@ -1,6 +1,6 @@
 <!-- template pour chaque page affiché, il faut utiliser ob_start-->
 <!-- $titre = titre de la page ajouté aprés l'initialisation de la variable ob_get_clean-->
-<!-- $titre = initialisation de la variable ob_get_clean, que est le codage à gerer de la page-->
+<!-- $content = initialisation de la variable ob_get_clean, que est le codage à gerer de la page-->
 
 <!-- Similair à require, mais si le code php est déjà ajouté, le codage n'est pas inclus encore-->
 <?php require_once 'functions.php' ?>

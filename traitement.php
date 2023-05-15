@@ -14,6 +14,7 @@ if(isset($_GET['action']))
         switch($_GET['action'])
             {
                 case 'addProduct':
+                    
                     //pour limiter l'acces à traitement.php 
                     //par les seules requetes HTTP provenant de la soumission de notre formulaire
                     //on va à verifier de la clé "submit" dans le tablea $_POST
