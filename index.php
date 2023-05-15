@@ -30,7 +30,7 @@
                     <div class="file-input">
                         <!--for = id of the input-->
                         <label for="inputFile">Sélectionnez l'image</label>
-                        <input class="inputFile" id="inputFile" type="file">
+                        <input class="inputFile" id="inputFile" name="file" type="file">
                         <p class="file-name"></p>
                     </div>
                 <p>
